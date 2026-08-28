@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#080b14" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RUTI" />
+    <meta
+      name="description"
+      content="RUTI, tu entrenador personal para rutinas, progreso y torneos de Fortnite."
+    />
+    <title>RUTI · Fortnite Training Planner</title>
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+        <path d="m15 18-6-6 6-6" />
+      </symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+        <path d="m9 18 6-6-6-6" />
+      </symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="icon-minus" viewBox="0 0 24 24">
+        <path d="M5 12h14" />
+      </symbol>
+      <symbol id="icon-expand" viewBox="0 0 24 24">
+        <path d="M9 4H4v5m11-5h5v5M9 20H4v-5m11 5h5v-5" />
+      </symbol>
+      <symbol id="icon-sparkles" viewBox="0 0 24 24">
+        <path d="m12 3 1.3 3.7L17 8l-3.7 1.3L12 13l-1.3-3.7L7 8l3.7-1.3L12 3Zm6 10 .8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8L18 13ZM6 14l1.1 2.9L10 18l-2.9 1.1L6 22l-1.1-2.9L2 18l2.9-1.1L6 14Z" />
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" />
+      </symbol>
+      <symbol id="icon-trophy" viewBox="0 0 24 24">
+        <path d="M8 4h8v5a4 4 0 0 1-8 0V4Zm4 9v4m-4 3h8M6 6H3v2a4 4 0 0 0 5 4m10-6h3v2a4 4 0 0 1-5 4" />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24">
+        <path d="m14 5 5 5M4 20l3.5-.7L19 7.8a1.8 1.8 0 0 0 0-2.6l-.2-.2a1.8 1.8 0 0 0-2.6 0L4.7 16.5 4 20Z" />
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16M9 3h6l1 4H8l1-4Zm-3 4 1 14h10l1-14M10 11v6m4-6v6" />
+      </symbol>
+      <symbol id="icon-more" viewBox="0 0 24 24">
+        <circle cx="5" cy="12" r="1" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+        <circle cx="19" cy="12" r="1" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+        <path d="m7 14 5-5 5 5" />
+      </symbol>
+      <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+        <path d="m7 10 5 5 5-5" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m-5-5 5 5 5-5M5 20h14" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M12 16V4m-5 5 5-5 5 5M5 20h14" />
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M20 7v5h-5M4 17v-5h5m9.5-4A8 8 0 0 0 5 9m.5 7A8 8 0 0 0 19 15" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="icon-note" viewBox="0 0 24 24">
+        <path d="M5 4h14v16H5zM8 9h8m-8 4h8m-8 4h5" />
+      </symbol>
+      <symbol id="icon-bolt" viewBox="0 0 24 24">
+        <path d="m13 2-8 12h7l-1 8 8-12h-7l1-8Z" />
+      </symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24">
+        <path d="m8 5 11 7-11 7V5Z" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24">
+        <path d="M8 5v14M16 5v14" />
+      </symbol>
+      <symbol id="icon-stop" viewBox="0 0 24 24">
+        <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="11" height="11" rx="2" /><path d="M16 8V5H5v11h3" />
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24">
+        <path d="M14 5h5v5M19 5l-9 9M18 14v5H5V6h5" />
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10m6 10V4m6 16v-7m4 7H2" />
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" />
+      </symbol>
+      <symbol id="icon-bell" viewBox="0 0 24 24">
+        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4" />
+      </symbol>
+      <symbol id="icon-layers" viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5m-18 5 9 5 9-5" />
+      </symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><path d="M12 3v3m9 6h-3m-6 9v-3M3 12h3" />
+      </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.4" />
+      </symbol>
+      <symbol id="icon-cloud" viewBox="0 0 24 24">
+        <path d="M7 18h10a4 4 0 0 0 .8-7.9A6 6 0 0 0 6.3 8.8 4.6 4.6 0 0 0 7 18Z" />
+      </symbol>
+      <symbol id="icon-sync" viewBox="0 0 24 24">
+        <path d="M20 7v5h-5M4 17v-5h5m9.5-4A8 8 0 0 0 5 9m.5 7A8 8 0 0 0 19 15" />
+      </symbol>
+    </svg>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="noise"></div>
+
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="#" aria-label="RUTI, ir a hoy" id="brandHome">
+          <span class="brand-mark" aria-hidden="true">
+            <span>R</span>
+          </span>
+          <span class="brand-copy">
+            <strong>RUTI</strong>
+            <small>FORTNITE PLANNER</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <div class="save-state" id="saveState" aria-live="polite">
+            <span></span>
+            <span>Guardado</span>
+          </div>
+          <button class="cloud-account-button" id="cloudAccountButton" type="button" aria-label="Abrir cuenta y sincronización. Modo local" aria-controls="accountDialog" aria-haspopup="dialog">
+            <span class="cloud-status-dot" aria-hidden="true"></span>
+            <svg aria-hidden="true"><use href="#icon-cloud"></use></svg>
+            <span class="cloud-account-copy">
+              <strong id="cloudAccountLabel">Cuenta</strong>
+              <small id="cloudAccountHeaderStatus">Solo local</small>
+            </span>
+          </button>
+          <button class="profile-button" id="profileButton" type="button" aria-label="Abrir perfil y recordatorios">
+            <span class="profile-avatar" id="profileAvatar">J</span>
+            <span id="profileName">Jugador</span>
+          </button>
+          <button class="icon-button" id="dataMenuButton" type="button" aria-label="Opciones de datos" aria-controls="dataMenu" aria-haspopup="true" aria-expanded="false">
+            <svg><use href="#icon-more"></use></svg>
+          </button>
+          <div class="data-menu" id="dataMenu" hidden>
+            <button type="button" id="installAppButton">
+              <svg><use href="#icon-download"></use></svg>
+              <span id="installAppLabel">Instalar RUTI</span>
+            </button>
+            <div class="menu-separator"></div>
+            <button type="button" id="exportButton">
+              <svg><use href="#icon-download"></use></svg>
+              Exportar respaldo
+            </button>
+            <button type="button" id="importButton">
+              <svg><use href="#icon-upload"></use></svg>
+              Importar respaldo
+            </button>
+            <button type="button" id="shareBackupButton">
+              <svg><use href="#icon-share"></use></svg>
+              Compartir respaldo
+            </button>
+            <div class="menu-separator"></div>
+            <button class="danger-menu-item" type="button" id="resetAppButton">
+              <svg><use href="#icon-refresh"></use></svg>
+              Reiniciar aplicación
+            </button>
+          </div>
+          <input id="importFile" type="file" accept="application/json" hidden />
+        </div>
+      </div>
+    </header>
+
+    <main class="shell" id="main-content">
+      <section class="hero" id="heroSection" aria-labelledby="heroTitle">
+        <div>
+          <p class="eyebrow" id="todayEyebrow">TU PLAN DE HOY</p>
+          <h1 id="heroTitle">Hoy toca <span>mejorar.</span></h1>
+          <p class="hero-subtitle" id="heroSubtitle">Elige una tarea y empieza con calma.</p>
+          <span class="today-goal-chip" id="todayGoalChip">Semana: sin objetivos configurados</span>
+        </div>
+        <button class="secondary-button today-button" id="todayButton" type="button">
+          <svg><use href="#icon-calendar"></use></svg>
+          Ir a hoy
+        </button>
+      </section>
+
+      <nav class="view-tabs" aria-label="Secciones principales">
+        <button class="view-tab active" id="plannerViewButton" type="button" aria-pressed="true">
+          <svg><use href="#icon-bolt"></use></svg>
+          <span>Hoy</span>
+        </button>
+        <button class="view-tab" id="planViewButton" type="button" aria-pressed="false">
+          <svg><use href="#icon-calendar"></use></svg>
+          <span>Plan</span>
+        </button>
+        <button class="view-tab" id="historyViewButton" type="button" aria-pressed="false">
+          <svg><use href="#icon-chart"></use></svg>
+          <span>Progreso</span>
+        </button>
+        <button class="view-tab profile-view-tab" id="mobileProfileButton" type="button" aria-pressed="false">
+          <svg><use href="#icon-user"></use></svg>
+          <span>Perfil</span>
+        </button>
+      </nav>
+
+      <div id="plannerView">
+
+      <section class="plan-header plan-only" id="planHeader" aria-labelledby="planTitle">
+        <div>
+          <p class="eyebrow">ORGANIZA TU SEMANA</p>
+          <h1 id="planTitle">Plan de entrenamiento</h1>
+          <p>Prepara cada día, ajusta tus metas y llega a los torneos con un plan claro.</p>
+        </div>
+        <button class="primary-button" id="planAddTaskButton" type="button"><svg><use href="#icon-plus"></use></svg>Añadir tarea</button>
+      </section>
+
+      <section class="week-section plan-only" aria-labelledby="weekLabel">
+        <div class="week-toolbar">
+          <button class="icon-button" id="previousWeek" type="button" aria-label="Semana anterior">
+            <svg><use href="#icon-chevron-left"></use></svg>
+          </button>
+          <div>
+            <p class="eyebrow">SEMANA</p>
+            <h2 id="weekLabel">10 — 16 AGO</h2>
+          </div>
+          <button class="icon-button" id="nextWeek" type="button" aria-label="Semana siguiente">
+            <svg><use href="#icon-chevron-right"></use></svg>
+          </button>
+        </div>
+        <div class="week-grid" id="weekGrid" aria-label="Días de la semana"></div>
+      </section>
+
+      <section class="panel weekly-goals-panel plan-only" id="weeklyGoalsPanel" aria-labelledby="weeklyGoalsTitle">
+        <div class="panel-header compact-header">
+          <div><p class="eyebrow">OBJETIVOS SEMANALES</p><h2 id="weeklyGoalsTitle">Tu compromiso</h2><p id="weeklyGoalsRange">Esta semana</p></div>
+          <button class="secondary-button" id="editWeeklyGoalsButton" type="button"><svg><use href="#icon-edit"></use></svg>Editar objetivos</button>
+        </div>
+        <div class="weekly-goal-grid" id="weeklyGoalGrid"></div>
+      </section>
+
+      <div class="dashboard-grid">
+        <section class="panel routine-panel" aria-labelledby="routineTitle">
+          <div class="panel-header routine-header">
+            <div>
+              <div class="title-row">
+                <p class="eyebrow" id="selectedDateLabel">LUNES, 10 DE AGOSTO</p>
+                <span class="mode-chip" id="modeChip">RUTINA BASE</span>
+              </div>
+              <h2 id="routineTitle">Rutina del día</h2>
+            </div>
+            <button class="primary-button desktop-add" id="addTaskButton" type="button">
+              <svg><use href="#icon-plus"></use></svg>
+              Añadir tarea
+            </button>
+          </div>
+
+          <div class="progress-block">
+            <div class="progress-copy">
+              <span id="progressLabel">0 de 0 completadas</span>
+              <span id="durationLabel">0 min planeados</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+              <span id="progressFill"></span>
+            </div>
+          </div>
+
+          <div class="tournament-banner" id="tournamentBanner" hidden></div>
+          <div class="coach-tip" id="coachTip" hidden></div>
+
+          <div class="task-list" id="taskList"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <span class="empty-icon"><svg><use href="#icon-bolt"></use></svg></span>
+            <h3>Día libre por ahora</h3>
+            <p>Añade tu primera tarea o recupera la rutina base de este día.</p>
+            <button class="secondary-button" id="emptyAddButton" type="button">
+              <svg><use href="#icon-plus"></use></svg>
+              Crear una tarea
+            </button>
+          </div>
+
+          <div class="routine-footer">
+            <button class="secondary-button" id="reviewSessionButton" type="button">
+              <svg><use href="#icon-note"></use></svg>
+              <span id="reviewSessionLabel">Cerrar sesión</span>
+            </button>
+            <span class="footer-divider" aria-hidden="true"></span>
+            <button class="text-button" id="routineOptionsButton" type="button">
+              <svg><use href="#icon-layers"></use></svg>
+              Opciones de rutina
+            </button>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel summary-panel" aria-labelledby="summaryTitle">
+            <div class="panel-header compact-header">
+              <div>
+                <p class="eyebrow">ESTA SEMANA</p>
+                <h2 id="summaryTitle">Tu progreso</h2>
+              </div>
+              <span class="summary-ring" id="summaryRing"><strong>0%</strong></span>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span class="stat-icon cyan"><svg><use href="#icon-clock"></use></svg></span>
+                <strong id="weekMinutes">0</strong>
+                <small>minutos</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon green"><svg><use href="#icon-check"></use></svg></span>
+                <strong id="weekCompleted">0</strong>
+                <small>completadas</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon amber"><svg><use href="#icon-trophy"></use></svg></span>
+                <strong id="weekTournaments">0</strong>
+                <small>torneos</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel tournament-panel plan-priority" id="tournamentPanel" aria-labelledby="tournamentTitle">
+            <div class="panel-header compact-header">
+              <div>
+                <p class="eyebrow">COMPETICIÓN</p>
+                <h2 id="tournamentTitle">Torneos</h2>
+              </div>
+              <span class="panel-icon amber"><svg><use href="#icon-trophy"></use></svg></span>
+            </div>
+            <div class="event-list" id="eventList"></div>
+            <div class="event-empty" id="eventEmpty">
+              <p>No hay torneos este día.</p>
+              <small>Planifica uno y adapta el calentamiento.</small>
+            </div>
+            <button class="secondary-button full-button" id="addEventButton" type="button">
+              <svg><use href="#icon-plus"></use></svg>
+              Añadir torneo
+            </button>
+            <div class="upcoming-block">
+              <div class="mini-section-title">
+                <span>PRÓXIMOS</span>
+                <button class="text-button" id="showAllEventsButton" type="button">Ver todos</button>
+              </div>
+              <div class="upcoming-list" id="upcomingList"></div>
+            </div>
+          </section>
+
+          <section class="panel notes-panel plan-only" aria-labelledby="notesTitle">
+            <div class="notes-heading">
+              <span class="panel-icon violet"><svg><use href="#icon-note"></use></svg></span>
+              <div>
+                <p class="eyebrow">APUNTES</p>
+                <h2 id="notesTitle">Notas del día</h2>
+              </div>
+            </div>
+            <label class="sr-only" for="dayNotes">Notas del día seleccionado</label>
+            <textarea id="dayNotes" maxlength="500" placeholder="Sensibilidad, errores, objetivos para hoy…"></textarea>
+            <small class="note-hint">Se guarda automáticamente en este dispositivo.</small>
+          </section>
+        </aside>
+      </div>
+      </div>
+
+      <section class="history-view" id="historyView" aria-labelledby="historyTitle" hidden>
+        <div class="history-header">
+          <div>
+            <p class="eyebrow">TU EVOLUCIÓN</p>
+            <h1 id="historyTitle">Progreso e historial</h1>
+            <p>Mide el tiempo real, descubre patrones y decide qué practicar después.</p>
+          </div>
+          <label class="range-select">Periodo
+            <select id="historyRange">
+              <option value="7">7 días</option>
+              <option value="30" selected>30 días</option>
+              <option value="all">Todo</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="history-kpis">
+          <article class="history-kpi"><span>TIEMPO REAL</span><strong id="historyActual">0 min</strong><small id="historyActualHint">Sin sesiones todavía</small></article>
+          <article class="history-kpi"><span>CUMPLIMIENTO</span><strong id="historyCompletion">0%</strong><small>Tareas completadas</small></article>
+          <article class="history-kpi"><span>RACHA</span><strong id="historyStreak">0 días</strong><small>Entrenamientos consecutivos</small></article>
+          <article class="history-kpi"><span>CONCENTRACIÓN</span><strong id="historyFocus">—</strong><small>Promedio de revisiones</small></article>
+        </div>
+
+        <div class="history-grid">
+          <section class="panel analytics-panel">
+            <div class="panel-header compact-header"><div><p class="eyebrow">POR CATEGORÍA</p><h2>En qué estás trabajando</h2></div><span class="panel-icon cyan"><svg><use href="#icon-target"></use></svg></span></div>
+            <div class="category-chart" id="categoryChart"></div>
+          </section>
+          <section class="panel analytics-panel">
+            <div class="panel-header compact-header"><div><p class="eyebrow">CONSISTENCIA</p><h2>Últimos entrenamientos</h2></div><span class="panel-icon violet"><svg><use href="#icon-calendar"></use></svg></span></div>
+            <div class="training-heatmap" id="trainingHeatmap"></div>
+            <div class="error-summary" id="errorSummary"></div>
+          </section>
+          <section class="panel sessions-panel">
+            <div class="panel-header compact-header"><div><p class="eyebrow">HISTORIAL</p><h2>Sesiones recientes</h2></div></div>
+            <div class="session-list" id="sessionList"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="profile-view" id="profileView" aria-labelledby="profileViewTitle" hidden>
+        <div class="profile-view-header">
+          <div><p class="eyebrow">TU CONFIGURACIÓN</p><h1 id="profileViewTitle">Perfil y preferencias</h1><p>Tu entrenamiento se adapta a tu tiempo, objetivo y forma de jugar.</p></div>
+          <button class="primary-button" id="openProfileEditorButton" type="button"><svg><use href="#icon-edit"></use></svg>Editar perfil</button>
+        </div>
+        <div class="profile-view-grid">
+          <section class="panel player-summary-card">
+            <span class="profile-view-avatar" id="profileViewAvatar">J</span>
+            <div><p class="eyebrow">JUGADOR</p><h2 id="profileViewName">Jugador</h2><p id="profileViewMeta">PC · Teclado y mouse · Intermedio</p></div>
+          </section>
+          <section class="panel profile-detail-card"><span class="panel-icon cyan"><svg><use href="#icon-target"></use></svg></span><div><small>OBJETIVO PRINCIPAL</small><strong id="profileViewGoal">Aún no definido</strong><p id="profileViewWeaknesses">Añade tus puntos débiles para recibir mejores recomendaciones.</p></div></section>
+          <section class="panel profile-detail-card"><span class="panel-icon violet"><svg><use href="#icon-clock"></use></svg></span><div><small>TIEMPO DISPONIBLE</small><strong id="profileViewTime">90 min al día</strong><p id="profileViewReminders">Recordatorios desactivados</p></div></section>
+          <section class="panel profile-data-card profile-cloud-card"><div><p class="eyebrow">CUENTA Y SINCRONIZACIÓN</p><h2>Tu rutina en todos tus dispositivos</h2><p>Inicia sesión para sincronizar automáticamente tu rutina entre PC y móvil. RUTI también funciona sin cuenta y mantiene tus datos guardados solo en este dispositivo.</p></div><button class="primary-button" id="profileCloudButton" type="button" aria-controls="accountDialog" aria-haspopup="dialog"><svg><use href="#icon-cloud"></use></svg><span id="profileCloudLabel">Configurar cuenta</span></button></section>
+          <section class="panel profile-data-card"><div><p class="eyebrow">PC Y MÓVIL</p><h2>Instala RUTI en cualquier pantalla</h2><p>Funciona como aplicación en tu PC o móvil y conserva el modo sin conexión. Usa respaldos para llevar tus datos a otro dispositivo.</p></div><div class="profile-data-actions"><button class="primary-button" id="profileInstallButton" type="button"><svg><use href="#icon-download"></use></svg><span id="profileInstallLabel">Instalar RUTI</span></button><button class="secondary-button" id="profileDataMenuButton" type="button" aria-controls="dataMenu" aria-haspopup="true" aria-expanded="false"><svg><use href="#icon-layers"></use></svg>Opciones de datos</button></div></section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer shell">
+      <span>RUTI · Hecho para enfocarte en una partida a la vez.</span>
+      <span>Tus datos se quedan en este navegador.</span>
+    </footer>
+
+    <button class="floating-add" id="floatingAdd" type="button" aria-label="Añadir tarea">
+      <svg><use href="#icon-plus"></use></svg>
+    </button>
+
+    <dialog class="app-dialog" id="taskDialog" aria-labelledby="taskDialogTitle">
+      <form id="taskForm" novalidate>
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">ENTRENAMIENTO</p>
+            <h2 id="taskDialogTitle">Nueva tarea</h2>
+          </div>
+          <button class="icon-button close-dialog" type="button" aria-label="Cerrar">
+            <svg><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+
+        <input id="taskId" type="hidden" />
+        <div class="form-field">
+          <label for="taskTitle">Nombre de la tarea</label>
+          <input id="taskTitle" name="title" maxlength="60" required autocomplete="off" aria-describedby="taskTitleError" placeholder="Ej. Freebuild y retakes" />
+          <small class="field-error" id="taskTitleError" aria-live="polite"></small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="taskCategory">Categoría</label>
+            <select id="taskCategory" name="category">
+              <option value="aim">Aim</option>
+              <option value="edit">Edits</option>
+              <option value="build">Builds</option>
+              <option value="fight">Realistics</option>
+              <option value="ranked">Ranked / Scrims</option>
+              <option value="vod">VOD review</option>
+              <option value="break">Descanso</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="taskDuration">Duración</label>
+            <div class="input-suffix">
+              <input id="taskDuration" name="duration" type="number" min="1" max="600" required inputmode="numeric" aria-describedby="taskDurationError" value="20" />
+              <span>min</span>
+            </div>
+            <small class="field-error" id="taskDurationError" aria-live="polite"></small>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="taskNotes">Notas <span>(opcional)</span></label>
+          <textarea id="taskNotes" name="notes" maxlength="180" placeholder="Técnica, errores que debes evitar…"></textarea>
+        </div>
+
+        <details class="advanced-form-details" id="taskAdvancedDetails">
+          <summary>
+            <span><svg><use href="#icon-target"></use></svg> Detalles Fortnite</span>
+            <small>Opcional</small>
+          </summary>
+          <div class="advanced-form-body">
+            <div class="form-field">
+              <label for="taskGoal">Objetivo concreto</label>
+              <input id="taskGoal" maxlength="120" placeholder="Ej. 80% de precisión sin perder velocidad" />
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="taskRounds">Rondas o repeticiones</label>
+                <input id="taskRounds" type="number" min="0" max="999" inputmode="numeric" placeholder="Ej. 5" />
+              </div>
+              <div class="form-field">
+                <label for="taskMapCode">Código de mapa</label>
+                <input id="taskMapCode" maxlength="24" autocomplete="off" placeholder="1234-5678-9012" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="taskLink">Enlace a mapa o video</label>
+              <input id="taskLink" type="url" maxlength="240" aria-describedby="taskLinkError" placeholder="https://…" />
+              <small class="field-error" id="taskLinkError" aria-live="polite"></small>
+            </div>
+          </div>
+        </details>
+
+        <fieldset class="scope-field" id="taskScopeField">
+          <legend>Aplicar cambio a</legend>
+          <label class="scope-option">
+            <input type="radio" name="taskScope" value="day" checked />
+            <span>
+              <strong>Solo este día</strong>
+              <small id="dayScopeDescription">El cambio no afectará tu rutina semanal.</small>
+            </span>
+          </label>
+          <label class="scope-option" id="templateScopeOption">
+            <input type="radio" name="taskScope" value="template" />
+            <span>
+              <strong id="templateScopeTitle">Rutina de todos los lunes</strong>
+              <small>Se aplicará a fechas que todavía no hayas personalizado.</small>
+            </span>
+          </label>
+        </fieldset>
+
+        <div class="dialog-actions">
+          <button class="danger-button" id="deleteTaskButton" type="button" hidden>
+            <svg><use href="#icon-trash"></use></svg>
+            Eliminar
+          </button>
+          <div class="dialog-actions-right">
+            <button class="secondary-button close-dialog" type="button">Cancelar</button>
+            <button class="primary-button" type="submit">Guardar tarea</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog" id="eventDialog" aria-labelledby="eventDialogTitle">
+      <form id="eventForm" novalidate>
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">COMPETICIÓN</p>
+            <h2 id="eventDialogTitle">Nuevo torneo</h2>
+          </div>
+          <button class="icon-button close-dialog" type="button" aria-label="Cerrar">
+            <svg><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+
+        <input id="eventId" type="hidden" />
+        <div class="form-field">
+          <label for="eventName">Nombre del torneo</label>
+          <input id="eventName" maxlength="70" required autocomplete="off" aria-describedby="eventNameError" placeholder="Ej. Solo Victory Cup" />
+          <small class="field-error" id="eventNameError" aria-live="polite"></small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="eventDate">Fecha</label>
+            <input id="eventDate" type="date" required aria-describedby="eventDateError" />
+            <small class="field-error" id="eventDateError" aria-live="polite"></small>
+          </div>
+          <div class="form-field">
+            <label for="eventTime">Hora de inicio</label>
+            <input id="eventTime" type="time" required aria-describedby="eventTimeError" />
+            <small class="field-error" id="eventTimeError" aria-live="polite"></small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="eventCheckIn">Check-in</label>
+            <input id="eventCheckIn" type="time" />
+          </div>
+          <div class="form-field">
+            <label for="eventFormat">Formato</label>
+            <select id="eventFormat">
+              <option value="Solo">Solo</option>
+              <option value="Dúo">Dúo</option>
+              <option value="Trío">Trío</option>
+              <option value="Squad">Squad</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="eventRegion">Región</label>
+            <select id="eventRegion">
+              <option value="NA-Central">NA-Central</option>
+              <option value="NA-East">NA-East</option>
+              <option value="NA-West">NA-West</option>
+              <option value="Europa">Europa</option>
+              <option value="Brasil">Brasil</option>
+              <option value="Oceanía">Oceanía</option>
+              <option value="Asia">Asia</option>
+              <option value="Oriente Medio">Oriente Medio</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="eventTeammate">Compañero o equipo</label>
+            <input id="eventTeammate" maxlength="60" placeholder="Nombre del compañero" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="eventRulesLink">Enlace a reglas</label>
+          <input id="eventRulesLink" type="url" maxlength="240" aria-describedby="eventRulesError" placeholder="https://…" />
+          <small class="field-error" id="eventRulesError" aria-live="polite"></small>
+        </div>
+
+        <div class="form-field">
+          <label for="eventNotes">Detalle <span>(opcional)</span></label>
+          <textarea id="eventNotes" maxlength="220" placeholder="Check-in, compañero, estrategia…"></textarea>
+        </div>
+
+        <details class="advanced-form-details tournament-details">
+          <summary><span><svg><use href="#icon-check"></use></svg> Checklist y resultado</span><small>Opcional</small></summary>
+          <div class="advanced-form-body">
+            <div class="checklist-grid">
+              <label><input id="eventCheckSetup" type="checkbox" /> Setup revisado</label>
+              <label><input id="eventCheckWater" type="checkbox" /> Agua preparada</label>
+              <label><input id="eventCheckDiscord" type="checkbox" /> Discord / equipo</label>
+              <label><input id="eventCheckRules" type="checkbox" /> Reglas revisadas</label>
+            </div>
+            <p class="mini-form-title">Resultado</p>
+            <div class="form-row result-row">
+              <div class="form-field"><label for="eventMatches">Partidas</label><input id="eventMatches" type="number" min="0" max="99" inputmode="numeric" /></div>
+              <div class="form-field"><label for="eventPoints">Puntos</label><input id="eventPoints" type="number" min="0" max="99999" inputmode="numeric" /></div>
+              <div class="form-field"><label for="eventElims">Eliminaciones</label><input id="eventElims" type="number" min="0" max="999" inputmode="numeric" /></div>
+              <div class="form-field"><label for="eventPlacement">Posición</label><input id="eventPlacement" type="number" min="1" max="999999" inputmode="numeric" /></div>
+            </div>
+          </div>
+        </details>
+
+        <label class="adapt-option" id="adaptOption">
+          <input id="adaptRoutine" type="checkbox" />
+          <span class="adapt-check"><svg><use href="#icon-check"></use></svg></span>
+          <span>
+            <strong>Preparar rutina de torneo</strong>
+            <small>Crea un calentamiento corto para esta fecha y conserva una copia de tu rutina actual.</small>
+          </span>
+        </label>
+
+        <div class="dialog-actions">
+          <div class="dialog-left-actions">
+            <button class="danger-button" id="deleteEventButton" type="button" hidden><svg><use href="#icon-trash"></use></svg>Eliminar</button>
+            <button class="secondary-button" id="exportEventButton" type="button" hidden><svg><use href="#icon-calendar"></use></svg>Calendario</button>
+          </div>
+          <div class="dialog-actions-right">
+            <button class="secondary-button close-dialog" type="button">Cancelar</button>
+            <button class="primary-button" type="submit">Guardar torneo</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog" id="reviewDialog" aria-labelledby="reviewDialogTitle">
+      <form id="reviewForm" novalidate>
+        <div class="dialog-header">
+          <div><p class="eyebrow">CIERRE DE SESIÓN</p><h2 id="reviewDialogTitle">¿Cómo entrenaste hoy?</h2></div>
+          <button class="icon-button close-dialog" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button>
+        </div>
+        <div class="review-summary" id="reviewSummary"></div>
+        <fieldset class="rating-field">
+          <legend>Concentración</legend>
+          <div class="rating-options" id="focusRating">
+            <label><input type="radio" name="focus" value="1" /><span>1<small>Baja</small></span></label>
+            <label><input type="radio" name="focus" value="2" /><span>2</span></label>
+            <label><input type="radio" name="focus" value="3" /><span>3</span></label>
+            <label><input type="radio" name="focus" value="4" /><span>4</span></label>
+            <label><input type="radio" name="focus" value="5" /><span>5<small>Máxima</small></span></label>
+          </div>
+          <small class="field-error" id="focusError" aria-live="polite"></small>
+        </fieldset>
+        <div class="form-field">
+          <label for="reviewFeeling">Energía y sensaciones</label>
+          <select id="reviewFeeling"><option value="great">Muy bien</option><option value="good">Bien</option><option value="neutral">Normal</option><option value="tired">Cansado</option><option value="frustrated">Frustrado</option></select>
+        </div>
+        <div class="form-field"><label for="reviewWin">Qué salió bien</label><textarea id="reviewWin" maxlength="240" placeholder="Una decisión, mecánica o hábito que funcionó…"></textarea></div>
+        <div class="form-field"><label for="reviewError">Error principal</label><textarea id="reviewError" maxlength="240" placeholder="Ej. peeks abiertos, mala rotación, falta de paciencia…"></textarea></div>
+        <div class="form-field"><label for="reviewNext">Qué practicar mañana</label><textarea id="reviewNext" maxlength="180" placeholder="Tu siguiente foco concreto…"></textarea></div>
+        <fieldset class="error-tags-field">
+          <legend>Errores que aparecieron</legend>
+          <div class="tag-checks" id="reviewErrorTags">
+            <label><input type="checkbox" value="Aim" /><span>Aim</span></label><label><input type="checkbox" value="Peeks" /><span>Peeks</span></label><label><input type="checkbox" value="Builds" /><span>Builds</span></label><label><input type="checkbox" value="Rotación" /><span>Rotación</span></label><label><input type="checkbox" value="Decisiones" /><span>Decisiones</span></label><label><input type="checkbox" value="Mental" /><span>Mental</span></label>
+          </div>
+        </fieldset>
+        <div class="dialog-actions"><div></div><div class="dialog-actions-right"><button class="secondary-button close-dialog" type="button">Cancelar</button><button class="primary-button" type="submit">Guardar revisión</button></div></div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog tools-dialog" id="routineToolsDialog" aria-labelledby="routineToolsTitle">
+      <div class="dialog-shell">
+        <div class="dialog-header"><div><p class="eyebrow">PLANIFICACIÓN</p><h2 id="routineToolsTitle">Opciones de rutina</h2></div><button class="icon-button close-dialog" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button></div>
+        <section class="tool-section">
+          <div class="tool-section-heading"><div><strong>Plantillas rápidas</strong><small>Aplica una rutina sin cambiar tu base semanal.</small></div></div>
+          <div class="preset-toolbar">
+            <button class="secondary-button" id="shareCurrentPresetButton" type="button"><svg><use href="#icon-share"></use></svg>Compartir rutina actual</button>
+            <button class="secondary-button" id="importPresetButton" type="button"><svg><use href="#icon-upload"></use></svg>Importar plantilla</button>
+            <input id="presetImportFile" type="file" accept="application/json,.json" hidden />
+          </div>
+          <div class="preset-grid" id="presetGrid"></div>
+          <div class="inline-form"><input id="presetName" maxlength="35" placeholder="Nombre de nueva plantilla" aria-label="Nombre de la nueva plantilla" /><button class="secondary-button" id="savePresetButton" type="button">Guardar la actual</button></div>
+        </section>
+        <section class="tool-section">
+          <div class="tool-section-heading"><div><strong>Copiar este día</strong><small>Los IDs se regeneran y el progreso no se copia.</small></div></div>
+          <div class="inline-form"><input id="copyDayDate" type="date" aria-label="Fecha de destino" /><select id="copyDayMode" aria-label="Cómo copiar la rutina"><option value="replace">Reemplazar destino</option><option value="merge">Combinar tareas</option></select><button class="secondary-button" id="copyDayButton" type="button">Copiar</button></div>
+          <button class="secondary-button full-button" id="copyWeekButton" type="button"><svg><use href="#icon-copy"></use></svg>Copiar esta semana a la siguiente</button>
+        </section>
+        <section class="tool-section base-tools">
+          <button class="secondary-button" id="saveTemplateButton" type="button">Guardar como rutina de los <span id="templateWeekday">lunes</span></button>
+          <button class="secondary-button" id="fitRoutineButton" type="button">Ajustar a mi tiempo disponible</button>
+          <button class="danger-button" id="restoreTemplateButton" type="button">Recuperar rutina base</button>
+        </section>
+        <div class="tools-dialog-footer"><button class="secondary-button close-dialog" type="button">Cerrar opciones</button></div>
+      </div>
+    </dialog>
+
+    <dialog class="app-dialog profile-dialog" id="profileDialog" aria-labelledby="profileDialogTitle">
+      <form id="profileForm" novalidate>
+        <div class="dialog-header"><div><p class="eyebrow" id="profileEyebrow">TU PERFIL</p><h2 id="profileDialogTitle">Haz RUTI tuya</h2><p class="dialog-intro">Usaremos esto para ajustar tiempos y recomendaciones. Todo queda en tu dispositivo.</p></div><button class="icon-button close-dialog profile-dismiss" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button></div>
+        <div class="form-row"><div class="form-field"><label for="playerName">Nombre de jugador</label><input id="playerName" maxlength="30" placeholder="Tu nombre" /></div><div class="form-field"><label for="playerLevel">Nivel</label><select id="playerLevel"><option value="beginner">Principiante</option><option value="intermediate" selected>Intermedio</option><option value="competitive">Competitivo</option><option value="pro">Profesional</option></select></div></div>
+        <div class="form-row"><div class="form-field"><label for="playerPlatform">Plataforma</label><select id="playerPlatform"><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Switch</option><option>Móvil</option></select></div><div class="form-field"><label for="playerInput">Control</label><select id="playerInput"><option value="keyboard">Teclado y mouse</option><option value="controller">Mando</option><option value="touch">Táctil</option></select></div></div>
+        <div class="form-row"><div class="form-field"><label for="playerRegion">Región</label><select id="playerRegion"><option>NA-Central</option><option>NA-East</option><option>NA-West</option><option>Europa</option><option>Brasil</option><option>Oceanía</option><option>Asia</option><option>Oriente Medio</option></select></div><div class="form-field"><label for="playerDailyMinutes">Minutos disponibles al día</label><div class="input-suffix"><input id="playerDailyMinutes" type="number" min="15" max="600" value="90" /><span>min</span></div></div></div>
+        <div class="form-field"><label for="playerGoal">Objetivo principal</label><input id="playerGoal" maxlength="100" placeholder="Ej. mejorar en torneos y controlar los nervios" /></div>
+        <div class="form-field"><label for="playerWeaknesses">Puntos débiles</label><input id="playerWeaknesses" maxlength="140" placeholder="Aim, peeks, rotaciones, mental…" /></div>
+        <section class="reminder-settings">
+          <div class="tool-section-heading"><div><strong>Recordatorios</strong><small>Funcionan mientras RUTI está abierta. Para torneos también puedes usar tu calendario.</small></div><button class="secondary-button" id="notificationPermissionButton" type="button"><svg><use href="#icon-bell"></use></svg><span id="notificationPermissionLabel">Activar</span></button></div>
+          <div class="setting-grid">
+            <label class="setting-toggle"><input id="routineReminderEnabled" type="checkbox" /><span>Rutina diaria</span></label><input id="routineReminderTime" type="time" value="17:00" aria-label="Hora del recordatorio de rutina" />
+            <label class="setting-toggle"><input id="tournamentReminderEnabled" type="checkbox" /><span>Antes del torneo</span></label><select id="tournamentReminderLead" aria-label="Anticipación del recordatorio de torneo"><option value="30">30 min</option><option value="60" selected>1 hora</option><option value="120">2 horas</option><option value="1440">24 horas</option></select>
+            <label class="setting-toggle"><input id="hydrationReminderEnabled" type="checkbox" /><span>Agua / descanso</span></label><select id="hydrationMinutes" aria-label="Frecuencia del recordatorio de agua y descanso"><option value="30">Cada 30 min</option><option value="45" selected>Cada 45 min</option><option value="60">Cada hora</option></select>
+          </div>
+        </section>
+        <label class="adapt-option compact-adapt"><input id="adaptProfileRoutine" type="checkbox" /><span class="adapt-check"><svg><use href="#icon-check"></use></svg></span><span><strong>Ajustar mis rutinas al tiempo disponible</strong><small>Conserva todas las tareas y reparte la duración de forma proporcional.</small></span></label>
+        <div class="dialog-actions"><button class="text-button" id="skipOnboardingButton" type="button">Ahora no</button><div class="dialog-actions-right"><button class="secondary-button close-dialog profile-dismiss" type="button">Cancelar</button><button class="primary-button" type="submit">Guardar perfil</button></div></div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog session-detail-dialog" id="sessionDetailDialog" aria-labelledby="sessionDetailTitle">
+      <div class="dialog-shell"><div class="dialog-header"><div><p class="eyebrow">SESIÓN</p><h2 id="sessionDetailTitle">Detalle del entrenamiento</h2></div><button class="icon-button close-dialog" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button></div><div id="sessionDetailContent"></div></div>
+    </dialog>
+
+    <dialog class="focus-dialog" id="focusDialog" aria-labelledby="focusTaskTitle">
+      <div class="focus-shell">
+        <header class="focus-header">
+          <button class="secondary-button focus-minimize" id="focusMinimizeButton" type="button"><svg><use href="#icon-arrow-down"></use></svg>Minimizar</button>
+          <span class="category-pill" id="focusCategory">Entrenamiento</span>
+          <button class="icon-button" id="focusCloseButton" type="button" aria-label="Minimizar modo enfoque"><svg><use href="#icon-close"></use></svg></button>
+        </header>
+        <main class="focus-main">
+          <p class="eyebrow">ENTRENANDO AHORA</p>
+          <h1 id="focusTaskTitle">Tarea</h1>
+          <strong class="focus-clock" id="focusElapsed" aria-live="off">00:00</strong>
+          <p class="focus-planned" id="focusPlanned">de 20:00 planeados</p>
+          <div class="focus-progress" aria-hidden="true"><span id="focusProgress"></span></div>
+          <p class="focus-goal" id="focusGoal" hidden></p>
+          <div class="focus-context-grid">
+            <section class="focus-map-card" id="focusMapBlock" hidden>
+              <small>CÓDIGO DE MAPA</small><strong id="focusMapCode"></strong>
+              <button class="secondary-button" id="focusCopyMapButton" type="button"><svg><use href="#icon-copy"></use></svg>Copiar</button>
+            </section>
+            <section class="focus-rounds-card" id="focusRoundsBlock" hidden>
+              <small>RONDAS COMPLETADAS</small>
+              <div class="rounds-stepper"><button id="focusRoundsMinus" type="button" aria-label="Restar una ronda"><svg><use href="#icon-minus"></use></svg></button><strong id="focusRoundsValue" aria-live="polite">0 / 0</strong><button id="focusRoundsPlus" type="button" aria-label="Sumar una ronda"><svg><use href="#icon-plus"></use></svg></button></div>
+            </section>
+          </div>
+          <button class="text-button focus-resource" id="focusOpenLinkButton" type="button" hidden><svg><use href="#icon-external"></use></svg>Abrir recurso de práctica</button>
+          <p class="focus-notes" id="focusNotes" hidden></p>
+        </main>
+        <footer class="focus-actions">
+          <button class="secondary-button focus-control" id="focusPauseButton" type="button"><svg><use href="#icon-pause"></use></svg><span>Pausar</span></button>
+          <button class="secondary-button focus-control" id="focusAddFiveButton" type="button"><svg><use href="#icon-plus"></use></svg>5 min</button>
+          <button class="primary-button focus-control finish" id="focusFinishButton" type="button"><svg><use href="#icon-stop"></use></svg>Finalizar tarea</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="app-dialog finish-task-dialog" id="finishTaskDialog" aria-labelledby="finishTaskTitle">
+      <form id="finishTaskForm" novalidate>
+        <div class="dialog-header"><div><p class="eyebrow">REGISTRO REAL</p><h2 id="finishTaskTitle">Finalizar entrenamiento</h2><p class="dialog-intro" id="finishTaskSummary">Corrige el tiempo y las rondas si lo necesitas.</p></div><button class="icon-button close-dialog" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button></div>
+        <div class="form-field"><label for="finishActualMinutes">Tiempo real registrado</label><div class="time-correction-row"><button class="secondary-button" type="button" data-time-adjust="-5">−5</button><div class="input-suffix"><input id="finishActualMinutes" type="number" min="0" max="720" step="0.01" inputmode="decimal" required /><span>min</span></div><button class="secondary-button" type="button" data-time-adjust="5">+5</button></div><small class="field-error" id="finishTimeError" aria-live="polite"></small></div>
+        <div class="form-field" id="finishRoundsField" hidden><label for="finishRoundsCompleted">Rondas completadas</label><input id="finishRoundsCompleted" type="number" min="0" max="9999" inputmode="numeric" /></div>
+        <div class="form-field"><label for="finishRating">¿Cómo salió esta tarea?</label><select id="finishRating"><option value="normal">Normal</option><option value="excellent">Excelente</option><option value="incomplete">Incompleta</option></select></div>
+        <label class="adapt-option compact-adapt"><input id="finishMarkDone" type="checkbox" checked /><span class="adapt-check"><svg><use href="#icon-check"></use></svg></span><span><strong>Marcar tarea como completada</strong><small>El tiempo se guardará aunque dejes la tarea pendiente.</small></span></label>
+        <div class="dialog-actions"><button class="text-button" id="finishContinueButton" type="button">Seguir entrenando</button><div class="dialog-actions-right"><button class="secondary-button close-dialog" type="button">Ahora no</button><button class="primary-button" type="submit">Guardar registro</button></div></div>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog weekly-goals-dialog" id="weeklyGoalsDialog" aria-labelledby="weeklyGoalsDialogTitle">
+      <form id="weeklyGoalsForm" novalidate>
+        <div class="dialog-header"><div><p class="eyebrow">OBJETIVOS DE LA SEMANA</p><h2 id="weeklyGoalsDialogTitle">Define una meta realista</h2><p class="dialog-intro">Se mide con el tiempo registrado, no con la duración planeada.</p></div><button class="icon-button close-dialog" type="button" aria-label="Cerrar"><svg><use href="#icon-close"></use></svg></button></div>
+        <div class="form-row"><div class="form-field"><label for="weeklyTargetMinutes">Minutos de entrenamiento</label><div class="input-suffix"><input id="weeklyTargetMinutes" type="number" min="0" max="5000" value="300" /><span>min</span></div></div><div class="form-field"><label for="weeklyTargetDays">Días con actividad</label><input id="weeklyTargetDays" type="number" min="0" max="7" value="4" /></div></div>
+        <div class="form-row"><div class="form-field"><label for="weeklyFocusCategory">Categoría prioritaria</label><select id="weeklyFocusCategory"><option value="aim">Aim</option><option value="edit">Edits</option><option value="build">Builds</option><option value="fight">Realistics</option><option value="ranked">Ranked</option><option value="vod">VOD</option><option value="other">Otro</option></select></div><div class="form-field"><label for="weeklyFocusMinutes">Minutos de esa categoría</label><div class="input-suffix"><input id="weeklyFocusMinutes" type="number" min="0" max="5000" value="60" /><span>min</span></div></div></div>
+        <div class="dialog-actions"><div></div><div class="dialog-actions-right"><button class="secondary-button close-dialog" type="button">Cancelar</button><button class="primary-button" type="submit">Guardar objetivos</button></div></div>
+      </form>
+    </dialog>
+
+    <dialog class="confirm-dialog" id="confirmDialog" aria-labelledby="confirmTitle">
+      <div class="confirm-icon" id="confirmIcon"><svg><use href="#icon-refresh"></use></svg></div>
+      <h2 id="confirmTitle">¿Estás seguro?</h2>
+      <p id="confirmMessage">Este cambio no se puede deshacer.</p>
+      <div class="confirm-actions">
+        <button class="secondary-button" id="confirmCancel" type="button">Cancelar</button>
+        <button class="danger-solid-button" id="confirmAccept" type="button">Continuar</button>
+      </div>
+    </dialog>
+
+    <dialog class="app-dialog account-dialog" id="accountDialog" aria-labelledby="accountDialogTitle">
+      <div class="account-dialog-shell">
+        <div class="dialog-header account-dialog-header">
+          <div>
+            <p class="eyebrow">CUENTA RUTI</p>
+            <h2 id="accountDialogTitle">Sincroniza tu entrenamiento</h2>
+            <p class="dialog-intro">Lleva tu rutina y progreso de forma segura entre tu PC y tu móvil.</p>
+          </div>
+          <button class="icon-button account-close-button" type="button" aria-label="Cerrar cuenta y sincronización">
+            <svg><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+
+        <section id="accountSignedOut" aria-labelledby="accountSignedOutTitle">
+          <div class="account-state-heading">
+            <span class="account-state-icon"><svg><use href="#icon-cloud"></use></svg></span>
+            <div><h3 id="accountSignedOutTitle">Entra o crea tu cuenta</h3><p>Usa el mismo correo en cada dispositivo para mantenerlos sincronizados.</p></div>
+          </div>
+          <form id="accountForm" novalidate>
+            <div class="form-field">
+              <label for="accountEmail">Correo electrónico</label>
+              <input id="accountEmail" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-field">
+              <label for="accountPassword">Contraseña <span>mínimo 6 caracteres</span></label>
+              <input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="Tu contraseña" required />
+            </div>
+            <p class="account-message account-error" id="accountAuthError" role="alert" aria-live="polite" hidden></p>
+            <div class="account-auth-actions">
+              <button class="primary-button" id="accountSignInButton" type="submit"><svg><use href="#icon-cloud"></use></svg>Iniciar sesión</button>
+              <button class="secondary-button" id="accountCreateButton" type="button">Crear cuenta</button>
+            </div>
+            <button class="text-button account-reset-button" id="accountResetButton" type="button">Olvidé mi contraseña</button>
+          </form>
+        </section>
+
+        <section id="accountSignedIn" hidden aria-labelledby="accountSignedInTitle">
+          <div class="account-state-heading signed-in">
+            <span class="account-state-icon"><svg><use href="#icon-check"></use></svg></span>
+            <div><p class="eyebrow">SESIÓN ACTIVA</p><h3 id="accountSignedInTitle">Cuenta conectada</h3><strong id="accountUserEmail">tu@correo.com</strong></div>
+          </div>
+          <div class="account-sync-card">
+            <span class="account-status-dot" aria-hidden="true"></span>
+            <div><strong>Estado de tus datos</strong><p id="accountSyncStatus" role="status" aria-live="polite">Preparando sincronización…</p></div>
+          </div>
+          <div class="account-signed-in-actions">
+            <button class="primary-button" id="accountSyncNowButton" type="button"><svg><use href="#icon-sync"></use></svg>Sincronizar ahora</button>
+            <button class="secondary-button" id="accountPushButton" type="button"><svg><use href="#icon-bell"></use></svg>Activar notificaciones</button>
+            <button class="text-button account-sign-out-button" id="accountSignOutButton" type="button">Cerrar sesión</button>
+          </div>
+        </section>
+
+        <aside class="account-privacy-note">
+          <svg aria-hidden="true"><use href="#icon-layers"></use></svg>
+          <p><strong>Tú decides.</strong> La cuenta es opcional. Sin ella, RUTI sigue funcionando y guarda todo localmente; al iniciar sesión, tus datos de entrenamiento se sincronizan mediante Firebase.</p>
+        </aside>
+        <button class="secondary-button account-close-button account-footer-close" type="button">Cerrar</button>
+      </div>
+    </dialog>
+
+    <section class="timer-bar" id="timerBar" aria-label="Temporizador activo" hidden>
+      <div class="timer-task-icon"><svg><use href="#icon-bolt"></use></svg></div>
+      <button class="timer-task-copy" id="timerFocusButton" type="button" aria-label="Abrir modo enfoque"><small>ENTRENANDO AHORA</small><strong id="activeTimerTask">Tarea</strong><span id="activeTimerGoal"></span></button>
+      <div class="timer-clock"><strong id="activeTimerElapsed">00:00</strong><small id="activeTimerPlanned">de 20:00</small></div>
+      <button class="timer-control" id="timerPauseButton" type="button" aria-label="Pausar temporizador"><svg><use href="#icon-pause"></use></svg></button>
+      <button class="timer-control finish" id="timerFinishButton" type="button" aria-label="Finalizar tarea"><svg><use href="#icon-stop"></use></svg></button>
+      <span class="timer-progress" id="timerProgress"></span>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+      <span id="toastMessage">Cambios guardados</span>
+      <button id="toastAction" type="button" hidden>Deshacer</button>
+    </div>
+
+    <div class="celebration" id="celebration" aria-hidden="true"></div>
+
+    <script src="firebase-config.js"></script>
+    <script src="cloud.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
